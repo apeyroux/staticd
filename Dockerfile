@@ -2,7 +2,7 @@ from debian
 
 RUN apt-get update
 RUN apt-get -y upgrade
-RUN apt-get -y install golang
+RUN apt-get -y install golang git
 
 RUN mkdir -p /var/www/staticd
 RUN echo "OK" > /var/www/staticd/README.txt
