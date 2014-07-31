@@ -33,5 +33,5 @@ docker logs IDCONTAINER
 #+BEGIN_SRC sh
 go build staticd
 ./staticd -h
-./staticd -port 80 -path /tmp
+./staticd -listen 127.0.0.1:80 -path /tmp
 #+END_SRC
