@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -22,8 +23,9 @@ func main() {
 		os.Exit(0)
 	}
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s %s %s", r.Method, r.RemoteAddr, r.UserAgent(), r.URL.Path)
-		http.ServeFile(w, r, flpath+r.URL.Path[1:])
+		log.Printf("%s %s %s %s", r.Method, r.RemoteAddr, r.UserAgent(), flpath+r.URL.Path[1:])
+		url := fmt.Sprintf("%s%s", flpath, r.URL.Path[1:])
+		http.ServeFile(w, r, url)
 	})
 	http.ListenAndServe(":"+flport, nil)
 }
