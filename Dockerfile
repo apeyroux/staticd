@@ -8,6 +8,6 @@ RUN mkdir -p /var/www/staticd
 RUN echo "OK" > /var/www/staticd/README.txt
 
 RUN go get github.com/j4/staticd
-CMD staticd.go -port 8080 -path /var/www/staticd
+CMD staticd -port 8080 -path /var/www/staticd
 
 EXPOSE 8080
