@@ -8,11 +8,11 @@ import (
 	"os"
 )
 
-var flport string
+var fllisten string
 var flpath string
 
 func init() {
-	flag.StringVar(&flport, "port", "8080", "Listen port")
+	flag.StringVar(&fllisten, "listen", "127.0.0.1:8080", "Listen port")
 	flag.StringVar(&flpath, "path", "", "Root Path")
 }
 
@@ -27,5 +27,5 @@ func main() {
 		url := fmt.Sprintf("%s%s", flpath, r.URL.Path[1:])
 		http.ServeFile(w, r, url)
 	})
-	http.ListenAndServe(":"+flport, nil)
+	http.ListenAndServe(fllisten, nil)
 }
