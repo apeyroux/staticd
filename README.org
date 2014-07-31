@@ -1,0 +1,37 @@
+Exemple static server in go and docker. 30 lignes of code.
+
+* Docker
+
+This section is simple exemple. In real life, you would use more
+options. Also, you can compile staticd binarie and add to container ...
+
+** Build image
+
+#+BEGIN_SRC sh
+docker build -t j4pe/staticd .
+#+END_SRC
+
+** Run
+
+#+BEGIN_SRC sh
+docker run -p 8080:8080 -v /data/staticd:/var/www/staticd -d j4pe/staticd
+#+END_SRC
+
+Open http://127.0.0.1:8080
+
+** Logs
+
+#+BEGIN_SRC sh
+docker logs IDCONTAINER
+2014/07/31 19:45:16 GET 172.17.42.1:53051 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 /
+2014/07/31 19:45:16 GET 172.17.42.1:53051 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 /favicon.ico
+2014/07/31 19:45:19 GET 172.17.42.1:53051 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 /README.txt
+#+END_SRC
+
+* Without docker
+
+#+BEGIN_SRC sh
+go build staticd
+./staticd -h
+./staticd -port 80 -path /tmp
+#+END_SRC
